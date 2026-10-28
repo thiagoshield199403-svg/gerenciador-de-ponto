@@ -1,0 +1,10 @@
+{
+  "name": "gerenciador-ponto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gerenciador de ponto e banco de horas — aplicação estática, sem dependências.",
+  "scripts": {
+    "test": "node --test tests/unit.test.js tests/store.test.js tests/drive.test.js tests/cripto.test.js",
+    "test:e2e": "node tests/e2e-chrome.js"
+  }
+}

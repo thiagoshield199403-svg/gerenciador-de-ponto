@@ -1,0 +1,22 @@
+/* ============================================================
+   Impressão (A4). Esconde menus/botões e imprime só o relatório.
+   ============================================================ */
+@page { size: A4 portrait; margin: 10mm 9mm 12mm; }
+
+html, body { background: #fff !important; }
+.no-print, .sidebar, .topo, .toasts, dialog, .abas, .acoes { display: none !important; }
+.app { display: block !important; }
+main { padding: 0 !important; max-width: none !important; }
+
+/* Em qualquer tela que não seja relatório, imprime o conteúdo normalmente (sem menus). */
+main > *:not(.relatorio) { box-shadow: none !important; }
+
+.relatorio { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: none !important; font-size: 8.5pt; }
+.rel-tabela { page-break-inside: auto; }
+.rel-tabela tr { page-break-inside: avoid; break-inside: avoid; }
+.rel-tabela thead { display: table-header-group; }
+.rel-totais, .rel-assinaturas, .rel-func, .rel-cab { break-inside: avoid; page-break-inside: avoid; }
+.rel-assinaturas { margin-top: 28px; }
+.relatorio h2 { break-after: avoid; page-break-after: avoid; }
+a { color: #000; text-decoration: none; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }

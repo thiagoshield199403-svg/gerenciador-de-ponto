@@ -1,0 +1,24 @@
+# Saídas geradas pelos testes (PDF, capturas de tela, backups fictícios baixados)
+tests/saida/
+
+# Backups NUNCA devem ir para o repositório (dados pessoais), criptografados ou não
+backup-ponto_*.json
+backup-ponto-cripto_*.json
+copia-seguranca_*.json
+
+# Credenciais e segredos (o sistema não usa nenhum; isto evita envios por engano)
+client_secret*.json
+credentials*.json
+*.pem
+*.key
+.env
+.env.*
+
+# Anotações de trabalho, logs e arquivos do sistema
+docs/PEDIDO-DRIVE.md
+*.log
+node_modules/
+.claude/
+Thumbs.db
+desktop.ini
+.DS_Store

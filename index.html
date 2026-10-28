@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <!-- Política de segurança. Únicas exceções externas (integração opcional com o Google Drive; ver docs/INTEGRACAO-GOOGLE-DRIVE.md):
+       script-src  https://accounts.google.com/gsi/client  -> biblioteca oficial de login (carregada só na tela Backup, com Client ID, em http/https)
+       style-src   https://accounts.google.com/gsi/style   -> folha de estilo que essa biblioteca injeta
+       connect-src .../drive/v3/ e .../upload/drive/v3/     -> Drive API (listar, baixar, criar pasta, enviar)
+       connect-src https://oauth2.googleapis.com/revoke     -> revogar o token ao desconectar -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob:; connect-src https://www.googleapis.com/drive/v3/ https://www.googleapis.com/upload/drive/v3/ https://oauth2.googleapis.com/revoke; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Gerenciador de Ponto</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <div id="app" class="app">
+    <aside class="sidebar no-print">
+      <div class="marca">
+        <span class="logo" aria-hidden="true">⏱</span>
+        <div><strong>Gerenciador de Ponto</strong><small id="versao"></small></div>
+      </div>
+      <nav id="menu" aria-label="Menu principal">
+        <a href="#/painel" data-view="painel">Painel</a>
+        <a href="#/funcionarios" data-view="funcionarios">Funcionários</a>
+        <a href="#/marcacoes" data-view="marcacoes">Marcações</a>
+        <a href="#/importar" data-view="importar">Importar ponto</a>
+        <a href="#/ocorrencias" data-view="ocorrencias">Ocorrências e feriados</a>
+        <a href="#/banco" data-view="banco">Banco de horas</a>
+        <a href="#/fechamento" data-view="fechamento">Fechamento mensal</a>
+        <a href="#/relatorios" data-view="relatorios">Relatórios e impressão</a>
+        <a href="#/backup" data-view="backup">Backup</a>
+        <a href="#/config" data-view="config">Configurações</a>
+        <a href="#/sobre" data-view="sobre">Sobre e limitações</a>
+      </nav>
+      <div id="status-armazenamento" class="status-armazenamento"></div>
+    </aside>
+
+    <div class="principal">
+      <header class="topo no-print">
+        <div class="seletores">
+          <label>Funcionário
+            <select id="sel-funcionario"></select>
+          </label>
+          <label>Competência
+            <span class="comp-nav">
+              <button type="button" id="comp-ant" title="Mês anterior" aria-label="Mês anterior">‹</button>
+              <input type="month" id="sel-comp" required>
+              <button type="button" id="comp-prox" title="Próximo mês" aria-label="Próximo mês">›</button>
+            </span>
+          </label>
+        </div>
+        <div id="aviso-backup" class="aviso-backup" hidden></div>
+      </header>
+      <div id="aviso-leitura" class="aviso-leitura no-print" role="status" hidden></div>
+      <div id="aviso-atualizacao" class="aviso-atualizacao no-print" role="status" hidden></div>
+      <main id="view" tabindex="-1">
+        <noscript><p class="erro-fatal">Este sistema precisa de JavaScript ativado no navegador.</p></noscript>
+        <p class="carregando">Carregando…</p>
+      </main>
+    </div>
+  </div>
+  <div id="toasts" class="toasts no-print" aria-live="polite"></div>
+
+  <!-- Scripts clássicos (sem módulos ES), para funcionar também abrindo o arquivo diretamente (file://). -->
+  <script src="js/util.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/bank.js"></script>
+  <script src="js/importer.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/backup.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/cripto.js"></script>
+  <script src="js/drive.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/views/painel.js"></script>
+  <script src="js/views/funcionarios.js"></script>
+  <script src="js/views/marcacoes.js"></script>
+  <script src="js/views/importar.js"></script>
+  <script src="js/views/ocorrencias.js"></script>
+  <script src="js/views/banco.js"></script>
+  <script src="js/views/fechamento.js"></script>
+  <script src="js/views/relatorios.js"></script>
+  <script src="js/views/backup.js"></script>
+  <script src="js/views/config.js"></script>
+  <script src="js/views/sobre.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
